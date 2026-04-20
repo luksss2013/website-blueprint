@@ -3,7 +3,8 @@ import { Award, BookOpen, HeartHandshake } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 import { CTASection } from "@/components/site/CTASection";
-import portrait from "@/assets/hero-executive.jpg";
+import heroCamara from "@/assets/camila-palestra-camara.jpg";
+import portraitPerfil from "@/assets/camila-palestra-perfil.jpg";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
@@ -19,6 +20,9 @@ export const Route = createFileRoute("/sobre")({
         property: "og:description",
         content: "Método, fundadora e valores que guiam nosso trabalho com lideranças e times.",
       },
+      { property: "og:image", content: heroCamara },
+      { name: "twitter:image", content: heroCamara },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: AboutPage,
@@ -49,15 +53,30 @@ function AboutPage() {
   return (
     <SiteLayout>
       <section className="border-b border-border/60 py-20 md:py-28">
-        <div className="container-prose">
-          <SectionEyebrow>Sobre a Britto</SectionEyebrow>
-          <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[1.05] text-balance md:text-6xl lg:text-7xl">
-            Psicologia que escuta a complexidade humana das organizações.
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            A Britto nasceu da convicção de que o mundo corporativo precisa de mais profundidade —
-            não de mais ferramentas. Trabalhamos com líderes e times que querem ir além da superfície.
-          </p>
+        <div className="container-prose grid gap-12 md:grid-cols-12 md:items-center md:gap-16">
+          <div className="md:col-span-7">
+            <SectionEyebrow>Sobre a Britto</SectionEyebrow>
+            <h1 className="mt-6 max-w-3xl font-display text-5xl leading-[1.05] text-balance md:text-6xl lg:text-7xl">
+              Psicologia que escuta a complexidade humana das organizações.
+            </h1>
+            <p className="mt-8 max-w-xl text-lg text-muted-foreground">
+              A Britto nasceu da convicção de que o mundo corporativo precisa de mais profundidade
+              — não de mais ferramentas. Trabalhamos com líderes e times que querem ir além da
+              superfície.
+            </p>
+          </div>
+          <div className="md:col-span-5">
+            <figure className="photo-editorial photo-editorial--soft aspect-[4/5] w-full rounded-2xl shadow-xl">
+              <img
+                src={heroCamara}
+                alt="Camila Britto em palestra na Câmara Municipal"
+                width={1200}
+                height={1500}
+                loading="eager"
+                className="h-full w-full object-cover"
+              />
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -65,14 +84,16 @@ function AboutPage() {
       <section className="py-20 md:py-28">
         <div className="container-prose grid gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <img
-              src={portrait}
-              alt="Fundadora da Britto"
-              width={1200}
-              height={1500}
-              loading="lazy"
-              className="aspect-[4/5] w-full rounded-2xl object-cover shadow-xl"
-            />
+            <figure className="photo-editorial aspect-[4/5] w-full rounded-2xl shadow-xl">
+              <img
+                src={portraitPerfil}
+                alt="Camila Britto durante palestra"
+                width={1200}
+                height={1500}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            </figure>
           </div>
           <div className="md:col-span-7">
             <SectionEyebrow>Fundadora</SectionEyebrow>
