@@ -185,4 +185,46 @@
       rgba(0, 0, 0, 0.015) 100%
     );
   }
+
+  /*
+   * Editorial photo treatment — keeps photos tonally aligned with the
+   * forest-green palette. Reduces saturation, adds subtle warmth,
+   * overlays a forest tint to harmonize with the rest of the site.
+   */
+  .photo-editorial {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .photo-editorial > img {
+    filter: grayscale(0.25) contrast(1.05) sepia(0.08) saturate(0.85);
+    transition: filter 0.4s ease;
+  }
+
+  .photo-editorial::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--forest) 18%, transparent),
+      color-mix(in oklab, var(--sand) 12%, transparent)
+    );
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .photo-editorial--soft > img {
+    filter: grayscale(0.15) contrast(1.03) sepia(0.05) saturate(0.9);
+  }
+
+  .photo-editorial--soft::after {
+    background: linear-gradient(
+      180deg,
+      transparent 40%,
+      color-mix(in oklab, var(--forest) 22%, transparent)
+    );
+  }
 }
