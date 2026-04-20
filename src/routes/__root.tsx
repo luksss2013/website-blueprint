@@ -40,6 +40,13 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Britto" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Britto — Psicologia organizacional para lideranças e times" },
+      { name: "twitter:title", content: "Britto — Psicologia organizacional para lideranças e times" },
+      { name: "description", content: "Website Blueprint plans and builds websites based on your provided files and assets." },
+      { property: "og:description", content: "Website Blueprint plans and builds websites based on your provided files and assets." },
+      { name: "twitter:description", content: "Website Blueprint plans and builds websites based on your provided files and assets." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8c723143-0fbe-4339-aa27-015cee541888/id-preview-09ddeaf6--f24092af-4467-4d0f-9fd0-e7a041dbbfa0.lovable.app-1776660942384.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8c723143-0fbe-4339-aa27-015cee541888/id-preview-09ddeaf6--f24092af-4467-4d0f-9fd0-e7a041dbbfa0.lovable.app-1776660942384.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
