@@ -17,9 +17,15 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
-      <div className="container-prose flex h-20 items-center justify-between">
+      <div className="container-prose flex h-24 items-center justify-between md:h-28">
         <Link to="/" className="flex items-center gap-3" aria-label="Britto — Início">
-          <img src={logo} alt="Britto" className="h-12 w-auto" width={120} height={48} />
+          <img
+            src={logo}
+            alt="Britto"
+            className="h-16 w-auto md:h-20"
+            width={200}
+            height={80}
+          />
         </Link>
 
         <nav className="hidden items-center gap-10 md:flex" aria-label="Principal">

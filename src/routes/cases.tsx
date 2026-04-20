@@ -3,7 +3,7 @@ import { Quote } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 import { CTASection } from "@/components/site/CTASection";
-import teamImg from "@/assets/team-conversation.jpg";
+import eventoLilas from "@/assets/camila-evento-lilas.jpg";
 
 export const Route = createFileRoute("/cases")({
   head: () => ({
@@ -19,7 +19,9 @@ export const Route = createFileRoute("/cases")({
         property: "og:description",
         content: "Resultados reais de programas de mentoria, times e cultura.",
       },
-      { property: "og:image", content: "/og-cases.jpg" },
+      { property: "og:image", content: eventoLilas },
+      { name: "twitter:image", content: eventoLilas },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: CasesPage,
@@ -144,14 +146,19 @@ function CasesPage() {
               <h2 className="mt-5 font-display text-4xl leading-tight md:text-5xl">
                 Recortes de programas que conduzimos.
               </h2>
-              <img
-                src={teamImg}
-                alt="Time executivo em conversa"
-                width={1600}
-                height={1000}
-                loading="lazy"
-                className="mt-10 aspect-[4/3] w-full rounded-2xl object-cover shadow-xl"
-              />
+              <figure className="photo-editorial mt-10 aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-xl">
+                <img
+                  src={eventoLilas}
+                  alt="Palestra Agosto Lilás na Câmara Municipal de Arujá"
+                  width={1600}
+                  height={1200}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </figure>
+              <p className="mt-4 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                Palestra · Agosto Lilás · Câmara Municipal de Arujá
+              </p>
             </div>
             <div className="md:col-span-7">
               <ul className="divide-y divide-border">
