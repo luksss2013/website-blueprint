@@ -3,7 +3,7 @@ import { ArrowRight, Compass, Sprout, Users } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 import { CTASection } from "@/components/site/CTASection";
-import heroImg from "@/assets/hero-executive.jpg";
+import heroImg from "@/assets/camila-hero.jpg";
 import textureImg from "@/assets/texture-organic.jpg";
 
 export const Route = createFileRoute("/")({
@@ -88,13 +88,15 @@ function HomePage() {
 
           <div className="relative md:col-span-5">
             <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-secondary/60" aria-hidden />
-            <img
-              src={heroImg}
-              alt="Liderança executiva em ambiente de escuta e reflexão"
-              width={1600}
-              height={1200}
-              className="relative aspect-[4/5] w-full rounded-[1.5rem] object-cover shadow-2xl"
-            />
+            <figure className="photo-editorial photo-editorial--soft relative aspect-[4/5] w-full overflow-hidden rounded-[1.5rem] shadow-2xl">
+              <img
+                src={heroImg}
+                alt="Camila Britto — fundadora da Britto Psicologia"
+                width={1600}
+                height={2000}
+                className="h-full w-full object-cover object-top"
+              />
+            </figure>
           </div>
         </div>
       </section>
