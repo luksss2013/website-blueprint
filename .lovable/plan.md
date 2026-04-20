@@ -1,51 +1,47 @@
 
-O usuário enviou o logo da **Britto** (leão + borboleta em traço fino verde-escuro sobre fundo branco). Isso já responde uma das perguntas pendentes (nome da marca = Britto). Vou consolidar o plano usando esse logo como âncora visual e propor a paleta a partir dele, mantendo as demais decisões em aberto de forma objetiva.
+The user wants:
+1. Replace current logo (`src/assets/britto-logo.png`) with the new optimized `user-uploads://logo.png`.
+2. Increase logo size in the header (currently `h-12` / 48px — too small for the 80px header).
+3. Incorporate the 3 photos of Camila (palestra/evento) into the site, respecting the visual identity (forest green, off-white, sober editorial). Apply tasteful filters/treatments (sepia/duotone/grayscale-with-tint) so the purple/red tones don't clash with the green-forest palette.
 
-## Leitura visual do logo
-- Traço orgânico, manuscrito, fino — sugere sofisticação artesanal, não corporativo frio
-- Verde-escuro / verde-floresta como cor única do desenho
-- Tipografia "Britto" em script elegante
-- Simbologia: leão (força, liderança) + borboleta (transformação) — narrativa perfeita para psicologia B2B (transformação de lideranças e times)
+## Photos analysis
+- `camila-palestra-camara.jpeg` — Camila speaking at a podium (Câmara Municipal). Excellent for **Hero of /sobre** (founder portrait in context of authority/expertise) — replaces the generic AI hero.
+- `camila-palestra-01.jpeg` — Camila in profile speaking into microphone, intimate framing. Perfect for **/sobre "Método/Fundadora" section** — replaces or complements existing imagery.
+- `camila-evento.jpeg` — Group photo at "Agosto Lilás" event (Câmara de Arujá). Strong social-proof asset → use on **/cases** as evidence of public engagements/talks, replacing the AI `team-conversation.jpg`.
 
-## Direção visual proposta (a confirmar)
-- **Paleta**: Verde-floresta `#1F3A2E` (primário, do logo) · Off-white `#FAF8F3` (fundo) · Bege quente `#E8DFD0` (superfícies) · Grafite `#1A1A1A` (texto) · Dourado discreto `#B8956A` (acento raro)
-- **Tipografia**: Serif editorial nos títulos (Fraunces/Cormorant) + sans humanista no corpo (Inter)
-- **Tom**: premium, sóbrio, espaçado, fotografia ampla, microinterações sutis
+## Visual treatment to preserve identity
+The photos contain heavy purple/lilás tones that clash with the forest-green palette. Apply CSS filter treatment: `grayscale(20%) contrast(1.05) sepia(8%)` plus a subtle warm overlay (bege `#E8DFD0` at low opacity with `mix-blend-multiply`) — keeps photos editorial, premium, and tonally aligned without destroying recognizability of Camila.
 
-## Estrutura do site (5 páginas do briefing)
+## Concrete changes
 
-```text
-/                 Home — hero + proposta + 3 pilares + provas + CTA
-/sobre            Sobre — método, fundadora, credenciais, valores
-/solucoes         Soluções — programas B2B (cards detalhados)
-/cases            Cases & Conteúdo — depoimentos, artigos
-/contato          Contato — formulário + dados + agendamento
-```
+**1. Logo**
+- `lov-copy user-uploads://logo.png src/assets/britto-logo.png` (overwrites)
+- `SiteHeader.tsx`: increase logo from `h-12` → `h-16` (64px) on desktop, keep `h-12` on mobile. Increase header height `h-20` → `h-24` to accommodate. Adjust `width/height` attrs to `160x64`.
+- `SiteFooter.tsx`: bump footer logo proportionally if used.
 
-Cada rota com `head()` próprio (SEO/OG por página), conforme padrão TanStack Start.
+**2. Photos integration**
+- Copy 3 images to `src/assets/`:
+  - `camila-palestra-camara.jpeg` → `camila-palestra-camara.jpg`
+  - `camila-palestra-01.jpeg` → `camila-palestra-perfil.jpg`
+  - `camila-evento.jpeg` → `camila-evento-lilas.jpg`
+- Reusable CSS class `.photo-editorial` in `styles.css` applying the filter treatment + a `::after` overlay tinted with primary/bege.
 
-## Componentes-chave
-- `SiteHeader` (logo Britto + nav + CTA "Fale conosco")
-- `SiteFooter` (institucional, contato, redes)
-- `Hero`, `PillarCard`, `SolutionCard`, `TestimonialCard`, `StatBlock`, `CTASection`
-- `ContactForm` (react-hook-form + zod)
+**3. Page wiring**
+- **`/sobre`**: hero image → `camila-palestra-camara.jpg`. Add a "Fundadora" section featuring `camila-palestra-perfil.jpg` with short bio paragraph (Camila Britto, psicóloga, atuação em palestras e formação de lideranças). OG image → same hero.
+- **`/cases`**: replace `team-conversation.jpg` with `camila-evento-lilas.jpg`. Update caption to reference real engagement context ("Palestra Agosto Lilás — Câmara Municipal de Arujá"). OG image → this photo.
+- **`/`**: keep current AI hero for now (it's abstract/editorial and works); no change needed unless requested.
 
-## Detalhes técnicos
-- Logo copiado para `src/assets/britto-logo.png` e importado como módulo ES6
-- Rotas em `src/routes/` (flat: `index.tsx`, `sobre.tsx`, `solucoes.tsx`, `cases.tsx`, `contato.tsx`)
-- Tema configurado em `src/styles.css` via `@theme` (tokens semânticos, sem cores hard-coded nos componentes)
-- `notFoundComponent` no root + `defaultErrorComponent` no router (já parcialmente presente)
-- Imagens hero geradas via Lovable AI (Nano banana) com estética coerente
+**4. Per-page og:image** (currently missing)
+- Add `og:image` + `twitter:image` meta to `/sobre` and `/cases` pointing to the public-served photo URLs (import the asset and use the resolved URL string).
 
-## Decisões em aberto (3 pontos)
+## Files to modify
+- `src/assets/britto-logo.png` (overwrite)
+- `src/assets/camila-palestra-camara.jpg` (new)
+- `src/assets/camila-palestra-perfil.jpg` (new)
+- `src/assets/camila-evento-lilas.jpg` (new)
+- `src/components/site/SiteHeader.tsx` (logo size + header height)
+- `src/styles.css` (`.photo-editorial` utility)
+- `src/routes/sobre.tsx` (hero + founder section + og:image)
+- `src/routes/cases.tsx` (replace team img + og:image)
 
-**1. Paleta** — Confirma verde-floresta + bege/off-white extraído do logo, ou prefere outra direção (azul-marinho, terracota, grafite puro)?
-
-**2. Formulário de contato** — Como tratar leads enviados em `/contato`?
-   - (a) Salvar no banco (Lovable Cloud) — recomendado
-   - (b) Salvar no banco + email de notificação
-   - (c) Apenas abrir WhatsApp/email do navegador (sem backend)
-
-**3. Escopo da v1** — Entregar as 5 páginas completas de uma vez, ou começar enxuto (Home + Soluções + Contato) e expandir depois?
-
-Pode responder em texto livre (ex.: "paleta do logo, opção b, todas as 5 páginas") que eu sigo direto para a implementação.
+No new dependencies. No backend changes. Approve to implement.
